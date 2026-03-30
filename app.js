@@ -59,8 +59,12 @@ const disabledBoxes = () => {
     box.disabled = true;
   }
 };
-
 const showWinner = (winner) => {
+  // if(winner == 'o'){
+  // msg.innerText = `Congratulation! Winner is ${p1.value}`;
+  // }else{
+  // msg.innerText = `Congratulation! Winner is ${p2.value}`;
+  // }
   msg.innerText = `Congratulation! Winner is ${winner}`;
   msgContainer.classList.remove("hide");
   disabledBoxes();
