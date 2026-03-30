@@ -1,10 +1,16 @@
-let boxes = document.querySelectorAll(".box");
-let restBtn = document.querySelector("#reset-btn");
-let newGameBtn = document.querySelector("#new-btn");
-let msg = document.querySelector("#msg");
-let msgContainer = document.querySelector(".msg-container");
-let mainContainer = document.querySelector("#mainContainer")
+const boxes = document.querySelectorAll(".box");
+const restBtn = document.querySelector("#reset-btn");
+const newGameBtn = document.querySelector("#new-btn");
+const msg = document.querySelector("#msg");
+const msgContainer = document.querySelector(".msg-container");
+const mainContainer = document.querySelector("#mainContainer");
+const modeContainer = document.querySelector(".mode-container");
+const modeBtn = document.querySelectorAll(".mode-btn");
+const playerForm = document.querySelector("#playerForm");
+const startBtn = document.querySelector(".start-btn");
 
+const p1 = document.querySelector("#p1");
+const p2 = document.querySelector("#p2");
 let turnO = true;
 
 const winPattern = [
@@ -18,20 +24,20 @@ const winPattern = [
   [6, 7, 8],
 ];
 
-// boxes.addEventListener("click", showData())
-
-function resetBtn() {
+function resetGame() {
   turnO = true;
   boxes.forEach((box) => {
     box.innerText = "";
     box.disabled = false;
   });
   msgContainer.classList.add("hide");
-  mainContainer.classList.remove('hide')
+  mainContainer.classList.remove("hide");
+  modeContainer.classList.add("hide");
+
   console.log("working ..");
 }
-newGameBtn.addEventListener("click", resetBtn);
-restBtn.addEventListener("click", resetBtn);
+newGameBtn.addEventListener("click", resetGame);
+restBtn.addEventListener("click", resetGame);
 
 boxes.forEach((box) => {
   box.addEventListener("click", () => {
@@ -65,12 +71,59 @@ const checkWinner = () => {
     let pos1Val = boxes[pattern[0]].innerText;
     let pos2Val = boxes[pattern[1]].innerText;
     let pos3Val = boxes[pattern[2]].innerText;
+    console.log(pos1Val)
+    console.log(pos2Val)
+    console.log(pos3Val)
     if (pos1Val != "" && pos2Val != "" && pos3Val != "") {
-      if (pos1Val == pos2Val && pos2Val == pos3Val) {
+      if (pos1Val === pos2Val && pos2Val === pos3Val) {
         console.log(`win ${pos1Val}`);
         showWinner(pos1Val);
-        mainContainer.classList.add('hide')
+        mainContainer.classList.add("hide");
+        return;
+      } else {
+        checkDraw();
       }
     }
   }
 };
+
+const checkDraw = () => {
+  let filled = 0;
+  boxes.forEach((box) => {
+    if (box.innerText != "") {
+      filled++;
+    }
+    if (filled == 9) {
+      msg.innerText = `The Match is draw`;
+      msgContainer.classList.remove("hide");
+      mainContainer.classList.add("hide");
+    }
+  });
+};
+
+const checkMode = () => {
+  console.log(modeContainer);
+  modeContainer.classList.add("hide");
+  // modeContainer.className.add('hide')
+  playerForm.classList.remove("hide");
+  console.log(`working....`);
+};
+modeBtn.forEach((btn) => {
+  btn.addEventListener("click", checkMode);
+});
+
+startBtn.addEventListener("click", () => {
+  mainContainer.classList.remove("hide");
+  modeContainer.classList.add("hide");
+  playerForm.classList.add("hide");
+  const player1Name = document.querySelector("#player1").value;
+  const player2Name = document.querySelector("#player2").value;
+  p1.innerHTML = player1Name;
+  p2.innerHTML = player2Name;
+  console.log(player1Name);
+  console.log(player1.innerText)
+console.log(player2Name); 
+});
+
+
+// console.log(startBtn);

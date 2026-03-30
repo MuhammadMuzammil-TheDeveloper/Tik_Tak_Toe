@@ -11,8 +11,55 @@
       <p id="msg">Winner</p>
       <button id="new-btn">New Game</button>
     </div>
-    <main id="mainContainer">
+    <!-- form -->
+    <div class="player-form-container hide" id="playerForm">
+      <h2>Enter Player Names</h2>
+
+      <form id="playerNameForm">
+        <div class="input-group">
+          <label>Player 1</label>
+          <input
+            type="text"
+            id="player1"
+            placeholder="Enter Player 1 Name"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <label>Player 2</label>
+          <input
+            type="text"
+            id="player2"
+            placeholder="Enter Player 2 Name"
+            required
+          />
+        </div>
+
+      </form>
+      <button class="start-btn">Start Game</button>
+    </div>
+
+    <div class="mode-container">
+      <div class="mode-card" id="pvp">
+        <h2>👥 Player vs Player</h2>
+        <p>Play with your friend on the same device.</p>
+        <button class="mode-btn">Start Game</button>
+      </div>
+
+      <div class="mode-card" id="ai">
+        <h2>🤖 Player vs Computer</h2>
+        <p>Challenge the computer and test your skills.</p>
+        <button class="mode-btn">Start Game</button>
+      </div>
+    </div>
+
+    <main id="mainContainer" class="hide">
       <h1>Tic Tac Toe</h1>
+      <div id="playerName">
+        <p id='p1'></p>
+        <p id="p2"></p>
+      </div>
       <div class="container">
         <div class="game">
           <button class="box"></button>
@@ -28,6 +75,7 @@
       </div>
       <button id="reset-btn">Reset Game</button>
     </main>
+
     <script src="app.js"></script>
   </body>
 </html>
