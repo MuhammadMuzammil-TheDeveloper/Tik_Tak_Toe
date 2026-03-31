@@ -8,7 +8,8 @@ const modeContainer = document.querySelector(".mode-container");
 const modeBtn = document.querySelectorAll(".mode-btn");
 const playerForm = document.querySelector("#playerForm");
 const startBtn = document.querySelector(".start-btn");
-
+const player1 = document.querySelector("#player1");
+const player2 = document.querySelector("#player2");
 const p1 = document.querySelector("#p1");
 const p2 = document.querySelector("#p2");
 let turnO = true;
@@ -59,13 +60,14 @@ const disabledBoxes = () => {
     box.disabled = true;
   }
 };
+console.log(player1);
+console.log(player2);
 const showWinner = (winner) => {
-  // if(winner == 'o'){
-  // msg.innerText = `Congratulation! Winner is ${p1.value}`;
-  // }else{
-  // msg.innerText = `Congratulation! Winner is ${p2.value}`;
-  // }
-  msg.innerText = `Congratulation! Winner is ${winner}`;
+  if (winner == "O") {
+    msg.innerText = `Congratulation! Winner is ${player1.value}`;
+  } else {
+    msg.innerText = `Congratulation! Winner is ${player2.value}`;
+  }
   msgContainer.classList.remove("hide");
   disabledBoxes();
 };
@@ -75,9 +77,9 @@ const checkWinner = () => {
     let pos1Val = boxes[pattern[0]].innerText;
     let pos2Val = boxes[pattern[1]].innerText;
     let pos3Val = boxes[pattern[2]].innerText;
-    console.log(pos1Val)
-    console.log(pos2Val)
-    console.log(pos3Val)
+    console.log(pos1Val);
+    console.log(pos2Val);
+    console.log(pos3Val);
     if (pos1Val != "" && pos2Val != "" && pos3Val != "") {
       if (pos1Val === pos2Val && pos2Val === pos3Val) {
         console.log(`win ${pos1Val}`);
@@ -125,9 +127,8 @@ startBtn.addEventListener("click", () => {
   p1.innerHTML = player1Name;
   p2.innerHTML = player2Name;
   console.log(player1Name);
-  console.log(player1.innerText)
-console.log(player2Name); 
+  console.log(player1.innerText);
+  console.log(player2Name);
 });
-
 
 // console.log(startBtn);
